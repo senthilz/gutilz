@@ -1,4 +1,4 @@
-package gutils
+package gutilz
 
 import (
 	"os"
