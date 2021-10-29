@@ -1,3 +1,3 @@
-module github.com/senthilz/gutils
+module github.com/senthilz/gutilz
 
 go 1.16
