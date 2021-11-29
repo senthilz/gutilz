@@ -9,7 +9,7 @@ import (
 	"log"
 )
 
-// CreateFolder creates a folder
+// CreateFolder - create or force re-create a folder
 func CreateFolder(folder string, forceCreate int) error {
 
 	folderInfo, err := os.Stat(folder)
@@ -36,8 +36,8 @@ func CreateFolder(folder string, forceCreate int) error {
 	return errDir
 }
 
-// Dumper Data::Dumper
-// usage: Dumper(data, map[string][string]{"indent":"\t", "prefix":""})
+// Dumper - similar to Data::Dumper module in Perl.
+// Usage: Dumper(data, map[string][string]{"indent":"\t", "prefix":""})
 func Dumper(data ...interface{}) (string, error) {
 	prefix := ""
 	indent := "  "
