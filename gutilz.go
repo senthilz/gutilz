@@ -37,7 +37,6 @@ func CreateFolder(folder string, forceCreate int) error {
 }
 
 // Dumper - similar to Data::Dumper module in Perl.
-// Usage: Dumper(data, map[string][string]{"indent":"\t", "prefix":""})
 func Dumper(data ...interface{}) (string, error) {
 	prefix := ""
 	indent := "  "
@@ -55,4 +54,32 @@ func Dumper(data ...interface{}) (string, error) {
 	}
 
 	return string(b), nil
+}
+
+// CreateSymLink creates a sym link
+func CreateSymLink(src string, p string, forceCreate int) error {
+	if _, err := os.Lstat(p); err == nil {
+		log.Printf("Symlink already exists. = %+v\n", p)
+
+		if forceCreate == 1 {
+			log.Printf("Removing symlink...")
+			os.Remove(p)
+		} else {
+			s, _ := os.Readlink(p)
+
+			log.Printf("Symlink %s points to %s", p, s)
+			if s != src {
+				log.Printf("WARN: Symlink destination is NOT pointing to %s", p)
+			}
+			return nil
+		}
+	}
+
+	err := os.Symlink(src, p)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	fmt.Printf("Symlink created %s --> %s", p, src)
+	return nil
 }

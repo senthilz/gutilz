@@ -1,3 +1,4 @@
+
 # gutilz
 
 ## Overview
@@ -10,6 +11,7 @@ import "github.com/senthilz/gutilz"
 ## Index
 
 - [func CreateFolder(folder string, forceCreate int) error](<#func-createfolder>)
+- [func CreateSymLink(src string, p string, forceCreate int) error](<#func-createsymlink>)
 - [func Dumper(data ...interface{}) (string, error)](<#func-dumper>)
 
 
@@ -21,10 +23,18 @@ func CreateFolder(folder string, forceCreate int) error
 
 CreateFolder \- create or force re\-create a folder
 
-## func [Dumper](<https://github.com/senthilz/gutilz/blob/main/gutilz.go#L41>)
+## func [CreateSymLink](<https://github.com/senthilz/gutilz/blob/main/gutilz.go#L60>)
+
+```go
+func CreateSymLink(src string, p string, forceCreate int) error
+```
+
+CreateSymLink creates a sym link
+
+## func [Dumper](<https://github.com/senthilz/gutilz/blob/main/gutilz.go#L40>)
 
 ```go
 func Dumper(data ...interface{}) (string, error)
 ```
 
-Dumper \- similar to Data::Dumper module in Perl usage: Dumper\(data\, map\[string\]\[string\]\{"indent":"\\t"\, "prefix":""\}\)
+Dumper \- similar to Data::Dumper module in Perl\.
