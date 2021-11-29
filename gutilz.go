@@ -1,7 +1,10 @@
 package gutilz
 
 import (
+	"encoding/json"
+	"fmt"
 	"os"
+	"reflect"
 
 	"log"
 )
@@ -31,4 +34,25 @@ func CreateFolder(folder string, forceCreate int) error {
 		log.Printf("created = %+v\n", folder)
 	}
 	return errDir
+}
+
+// Dumper Data::Dumper
+// usage: Dumper(data, map[string][string]{"indent":"\t", "prefix":""})
+func Dumper(data ...interface{}) (string, error) {
+	prefix := ""
+	indent := "  "
+	if len(data) == 2 {
+		if fmt.Sprintf("%s", reflect.TypeOf(data[1]).Kind()) == "map" {
+			params := data[1].(map[string]string)
+			prefix = params["prefix"]
+			indent = params["indent"]
+		}
+	}
+	b, err := json.MarshalIndent(data[0], prefix, indent)
+
+	if err != nil {
+		return "", err
+	}
+
+	return string(b), nil
 }
